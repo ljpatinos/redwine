@@ -36,7 +36,7 @@ def main():
     # Botón de predicción
     if st.button("Predecir Precio"):
         model = load_model()
-        input_data = np.array([[fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol]])
+        input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])
         prediction = model.predict(input_data)
         st.markdown(f"### Precio estimado de la vivienda: **${prediction}**")
 

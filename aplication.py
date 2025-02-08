@@ -46,7 +46,7 @@ def main():
         model = load_model()
         input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])
         prediction = np.argmax(model.predict(input_data))
-        st.markdown(f"### La calidad estimada del vino es : **${clases[prediction]}**")
+        st.markdown(f"### La calidad estimada del vino es : **{clases[prediction]}**")
 
 if __name__ == "__main__":
     main()

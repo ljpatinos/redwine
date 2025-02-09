@@ -9,7 +9,7 @@ import seaborn as sns
 # Cargar los datos
 @st.cache_data
 def load_data():
-    df = pd.read_csv("redwine.csv")  # Ajusta la ruta si es necesario
+    df = pd.read_csv("winequality-red.csv")  # Ajusta la ruta si es necesario
     return df
 
 # Cargar modelo
@@ -29,24 +29,47 @@ def main():
     # Cargar datos
     df = load_data()
 
+    # Barra lateral para seleccionar variable
+    st.sidebar.header("🔍 Exploración de Variables")
+    selected_var = st.sidebar.selectbox("Selecciona una variable:", df.columns)
+
     # Mostrar estadísticas descriptivas
-    st.subheader("📊 Estadísticas Descriptivas")
-    st.write(df.describe())
+    st.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'")
+    st.write(df[selected_var].describe())
 
-    # Mostrar tipos de variables
-    st.subheader("📌 Tipo de Variables")
-    st.write(df.dtypes)
+    # Mostrar tipo de variable
+    st.subheader("📌 Tipo de Variable")
+    st.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 
-    # Gráfico de barras de la variable "quality"
-    st.subheader("📈 Distribución de la Calidad del Vino")
+    # Generar gráficos
+    st.subheader("📈 Visualización de la Variable")
+
+    # Boxplot
+    st.markdown("### 🔲 Boxplot")
     fig, ax = plt.subplots()
-    sns.countplot(x=df["quality"], ax=ax, palette="viridis")
-    ax.set_title("Distribución de la Calidad del Vino")
-    ax.set_xlabel("Calidad")
-    ax.set_ylabel("Frecuencia")
+    sns.boxplot(y=df[selected_var], ax=ax, color="lightblue")
+    ax.set_title(f"Boxplot de {selected_var}")
     st.pyplot(fig)
 
-    # Inputs para predicción
+    # Gráfico de barras (solo si la variable es categórica o tiene pocos valores únicos)
+    if df[selected_var].nunique() < 10:
+        st.markdown("### 📊 Gráfico de Barras")
+        fig, ax = plt.subplots()
+        sns.countplot(x=df[selected_var], ax=ax, palette="viridis")
+        ax.set_title(f"Distribución de {selected_var}")
+        st.pyplot(fig)
+
+    # Dispersión contra calidad (si es numérica)
+    if df[selected_var].dtype in ["int64", "float64"] and selected_var != "quality":
+        st.markdown("### 🔵 Gráfico de Dispersión vs Calidad")
+        fig, ax = plt.subplots()
+        sns.scatterplot(x=df[selected_var], y=df["quality"], ax=ax, alpha=0.5)
+        ax.set_title(f"Relación entre {selected_var} y Calidad")
+        st.pyplot(fig)
+
+    # Sección de predicción de calidad
+    st.markdown("---")
+    st.subheader("🎯 Predicción de Calidad del Vino")
     st.markdown("Ingrese las características para predecir la calidad:")
 
     fixed_acidity = st.number_input("Acidez fija", min_value=0.0, format="%.5f")

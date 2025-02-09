@@ -9,7 +9,7 @@ import seaborn as sns
 # Cargar los datos
 @st.cache_data
 def load_data():
-    df = pd.read_csv("winequality-red.csv")  # Ajusta la ruta si es necesario
+    df = pd.read_csv("redwine.csv")  # Ajusta la ruta si es necesario
     return df
 
 # Cargar modelo

@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import gzip
-import matplotlib.pyplot as plt
+import matplotlib as plt
 import seaborn as sns
 
 # Cargar los datos

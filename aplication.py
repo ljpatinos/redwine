@@ -47,38 +47,35 @@ def main():
     selected_var = st.sidebar.selectbox("Selecciona una variable:", df.columns)
 
     # Mostrar estadísticas descriptivas
-    st.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'")
-    st.write(df[selected_var].describe())
+    st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'")
+    st.sidebar.write(df[selected_var].describe())
+    
+    st.siderbar.subheader("📌 Tipo de Variable")
+    st.siderbar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 
     # Mostrar tipo de variable
-    st.subheader("📌 Tipo de Variable")
-    st.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
+    col1, col2, col3 = st.columns([3,1])
+    with col1: 
+        st.subheader("📈 Visualización de la Variable")
+        fig_box, ax_box = plt.subplots()
+        sns.boxplot(y=df[selected_var], ax=ax_box, color="#ffcccb")
+        ax_box.set_title(f"Boxplot de {selected_var}", color='white')
+        st.pyplot(fig_box)
 
-    # Generar gráficos
-    st.subheader("📈 Visualización de la Variable")
+    with col2: 
+        fig_scatter, ax_scatter = plt.subplots()
+        if df[selected_var].dtype in ["int64", "float64"] and selected_var != "Calidad":
+            sns.scatterplot(x=df[selected_var], y=df["Calidad"], ax=ax_scatter, alpha=0.5)
+            ax_scatter.set_title(f"Relación entre {selected_var} y Calidad", color='white')
+            st.pyplot(fig_scatter)
+            
+    with col3:
+        fig_bar, ax_bar = plt.subplots()
+        if df[selected_var].nunique() < 10:
+            sns.countplot(x=df[selected_var], ax=ax_bar, palette="viridis")
+            ax_bar.set_title(f"Distribución de {selected_var}", color='white')
+            st.pyplot(fig_bar)
 
-    # Boxplot
-    st.markdown("### 🔲 Boxplot")
-    fig, ax = plt.subplots()
-    sns.boxplot(y=df[selected_var], ax=ax, color="lightblue")
-    ax.set_title(f"Boxplot de {selected_var}")
-    st.pyplot(fig)
-
-    # Gráfico de barras (solo si la variable es categórica o tiene pocos valores únicos)
-    if df[selected_var].nunique() < 10:
-        st.markdown("### 📊 Gráfico de Barras")
-        fig, ax = plt.subplots()
-        sns.countplot(x=df[selected_var], ax=ax, palette="viridis")
-        ax.set_title(f"Distribución de {selected_var}")
-        st.pyplot(fig)
-
-    # Dispersión contra calidad (si es numérica)
-    if df[selected_var].dtype in ["int64", "float64"] and selected_var != "quality":
-        st.markdown("### 🔵 Gráfico de Dispersión vs Calidad")
-        fig, ax = plt.subplots()
-        sns.scatterplot(x=df[selected_var], y=df["quality"], ax=ax, alpha=0.5)
-        ax.set_title(f"Relación entre {selected_var} y Calidad")
-        st.pyplot(fig)
 
     # Sección de predicción de calidad
     st.markdown("---")

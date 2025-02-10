@@ -60,7 +60,7 @@ def main():
     st.markdown("### 🔲 Boxplot")
     fig, ax = plt.subplots()
     sns.boxplot(y=df[selected_var], ax=ax, color="lightblue")
-    ax.set_title(f"Boxplot de {selected_var}",fontsize=12)
+    ax.set_title(f"Boxplot de {selected_var}",fontsize=8)
     st.pyplot(fig)
 
     # Gráfico de barras (solo si la variable es categórica o tiene pocos valores únicos)
@@ -68,7 +68,7 @@ def main():
         st.markdown("### 📊 Gráfico de Barras")
         fig, ax = plt.subplots()
         sns.countplot(x=df[selected_var], ax=ax, palette="viridis")
-        ax.set_title(f"Distribución de {selected_var}",fontsize=12)
+        ax.set_title(f"Distribución de {selected_var}",fontsize=8)
         st.pyplot(fig)
 
     # Dispersión contra calidad (si es numérica)
@@ -76,7 +76,7 @@ def main():
         st.markdown("### 🔵 Gráfico de Dispersión vs Calidad")
         fig, ax = plt.subplots()
         sns.scatterplot(x=df[selected_var], y=df["quality"], ax=ax, alpha=0.5)
-        ax.set_title(f"Relación entre {selected_var} y Calidad",fontsize=12)
+        ax.set_title(f"Relación entre {selected_var} y Calidad",fontsize=8)
         st.pyplot(fig)
 
     # Sección de predicción de calidad

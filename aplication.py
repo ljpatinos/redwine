@@ -12,7 +12,7 @@ st.markdown(
     """
     <style>
         body { background-color: #4F4F99; }
-        h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
+        h1, h2, h3, h4, h5, h6 { color: #FFFFFF; font-size: 18px;}
         .stSidebar { background-color: #561B47; }
         .dataframe { margin: auto; } /* Centrar la tabla */
     </style>

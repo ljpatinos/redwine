@@ -50,8 +50,8 @@ def main():
     st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'")
     st.sidebar.write(df[selected_var].describe())
     
-    st.siderbar.subheader("📌 Tipo de Variable")
-    st.siderbar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
+    st.sidebar.subheader("📌 Tipo de Variable")
+    st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 
     # Mostrar tipo de variable
     col1, col2, col3 = st.columns([3,1])

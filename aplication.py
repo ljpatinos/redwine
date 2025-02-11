@@ -151,5 +151,11 @@ def main():
         prediction = np.argmax(model.predict(input_data))
         st.markdown(f"### La calidad estimada del vino con **{selected_model_name}** es: **{clases[prediction]}**")
 
+
+    st.markdown("---")
+    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/DecisionTree.png" 
+    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/RedN.png"  # 🔹 Reemplaza con tu URL correcta
+    st.subheader("Matriz de confusión", divider='gray')
+    
 if __name__ == "__main__":
     main()

@@ -24,7 +24,7 @@ st.markdown(
         }
         h2 { color: #FFFFFF; font-size: 24px; }
         h3, h4, h5, h6 { color: #FFFFFF; font-size: 18px; }
-        .stSidebar { background-color: #000080; }
+        .stSidebar { background-color: #443D69; }
         .dataframe { margin: auto; }
     </style>
     """, 

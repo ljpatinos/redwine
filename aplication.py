@@ -19,7 +19,7 @@ st.markdown(
             color: #FFFFFF; 
             font-size: 35px;  
             font-weight: bold;
-            text-align: left;
+            text-align: center;
             margin-bottom: -10px; /* Reduce el espacio debajo del título */
         }
         h2 { color: #FFFFFF; font-size: 24px; }
@@ -53,10 +53,10 @@ def load_model(url):
 
 # Interfaz en Streamlit
 def main():
-    st.markdown(
-        '<h1 style="color: #FFFFFF; text-align: center; font-size:16px; ">Predicción de la calidad del vino rojo </h1>',
-        unsafe_allow_html=True
-    )
+    #st.markdown(
+        #'<h1 style="color: #FFFFFF; text-align: center; font-size:16px; ">Predicción de la calidad del vino rojo </h1>',
+        #unsafe_allow_html=True
+    #)
 
     # Cargar datos
     df = load_data()

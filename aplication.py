@@ -26,11 +26,6 @@ def load_data():
     df = pd.read_csv("redwine.csv")  # Ajusta la ruta si es necesario
     return df
 
-# Selección del modelo en la barra lateral
-st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
-selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
-selected_model_url = MODEL_URLS[selected_model_name]
-
 MODEL_URLS = {
     "Red neuronal": "https://raw.githubusercontent.com/ljpatinos/redwine/main/best_model.pkl.gz",
     "Arbol de decisiones": "https://raw.githubusercontent.com/ljpatinos/ljpatinos/main/model_trained_DT.pkl.gz",
@@ -44,7 +39,6 @@ def load_model(url):
 
 # Cargar el modelo seleccionado
 model = load_model(selected_model_url)
-
 
 # Interfaz en Streamlit
 def main():
@@ -67,6 +61,11 @@ def main():
     st.sidebar.subheader("📌 Tipo de Variable")
     st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 
+    # Selección del modelo en la barra lateral
+    st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
+    selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
+    selected_model_url = MODEL_URLS[selected_model_name]
+    
         # Generar gráficos
     st.subheader("📈 Visualización de la Variable")
     fig, axes = plt.subplots(1, 3, figsize=(10, 4))

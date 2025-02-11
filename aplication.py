@@ -139,7 +139,7 @@ def main():
     sulphates = st.number_input("Sulfatos", min_value=0.0, format="%.1f")
     alcohol = st.number_input("Contenido de alcohol (%)", min_value=0.0, format="%.2f")
 
-    clases = {0: 'No recomendable', 1: 'Poco recomendable', 2: 'Mediocre', 3: 'Aceptable', 4: 'Bueno', 5:'Muy bueno'}
+    clases = {0: 'No recomendable', 1: 'Poco recomendable', 2: 'Regular', 3: 'Aceptable', 4: 'Bueno', 5:'Muy bueno'}
 
     if st.button("Predecir Calidad"):
         input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,

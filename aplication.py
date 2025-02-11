@@ -9,13 +9,14 @@ import urllib.request
 
 # Configuración de estilo
 st.header("Predicción de Calidad del Vino", layout="wide")
+st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
 st.markdown(
     """
-     <style>
+    <style>
         body { background-color: #4F4F99; }
-        h1 { color: #FFFFFF; font-size: 16px; }
-        h2 { color: #FFFFFF; font-size: 12px; }
-        h3, h4, h5, h6 { color: #FFFFFF; font-size: 10px; }
+        h1 { color: #FFFFFF; font-size: 18px; }
+        h2 { color: #FFFFFF; font-size: 16px; }
+        h3, h4, h5, h6 { color: #FFFFFF; font-size: 14px; }
         .stSidebar { background-color: #561B47; }
         .dataframe { margin: auto; } /* Centrar la tabla */
     </style>

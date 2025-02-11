@@ -5,6 +5,7 @@ import pickle
 import gzip
 import matplotlib.pyplot as plt
 import seaborn as sns
+import urllib.request
 
 # Configuración de estilo
 st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
@@ -26,11 +27,24 @@ def load_data():
     return df
 
 # Cargar modelo
-def load_model():
-    filename = "best_model.pkl.gz"
-    with gzip.open(filename, 'rb') as f:
-        model = pickle.load(f)
+MODEL_URLS = {
+    "Árbol de Decisión": "https://raw.githubusercontent.com/usuario/repositorio/main/best_model.pkl.gz",
+    "Random Forest": "https://raw.githubusercontent.com/usuario/repositorio/main/model_trained_DT.pkl.gz",
+    "SVM": "https://raw.githubusercontent.com/usuario/repositorio/main/svm.pkl.gz"
+
+def load_model(url):
+    with urllib.request.urlopen(url) as response:
+        with gzip.GzipFile(fileobj=response) as f:
+            model = pickle.load(f)
     return model
+
+# Selección del modelo en la barra lateral
+st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
+selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
+selected_model_url = MODEL_URLS[selected_model_name]
+
+# Cargar el modelo seleccionado
+model = load_model(selected_model_url)
 
 # Interfaz en Streamlit
 def main():
@@ -100,12 +114,18 @@ def main():
     clases = {0: 'bueno', 1: '', 2: 'nada', 3: '', 4: ''}
 
     # Botón de predicción
+    #if st.button("Predecir Calidad"):
+        #model = load_model()
+        #input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,
+                                #free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])
+        #prediction = np.argmax(model.predict(input_data))
+        #st.markdown(f"### La calidad estimada del vino es: **{clases[prediction]}**")
+
     if st.button("Predecir Calidad"):
-        model = load_model()
         input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,
-                                free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])
+                            free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])
         prediction = np.argmax(model.predict(input_data))
-        st.markdown(f"### La calidad estimada del vino es: **{clases[prediction]}**")
+        st.markdown(f"### La calidad estimada del vino con **{selected_model_name}** es: **{clases[prediction]}**")
 
 if __name__ == "__main__":
     main()

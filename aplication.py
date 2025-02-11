@@ -145,7 +145,6 @@ def main():
 
     clases = {0: 'No recomendable', 1: 'Poco recomendable', 2: 'Mediocre', 3: 'Aceptable', 4: 'Bueno', 5:'Muy bueno'}
 
-   
     if st.button("Predecir Calidad"):
         input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,
                             free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])

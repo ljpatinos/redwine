@@ -79,7 +79,11 @@ def main():
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
     ax.set_title(f"Histograma de {selected_var}", fontsize=6)
     st.pyplot(fig)
-   
+
+    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
+    st.markdown("### Correlación", unsafe_allow_html=True)
+    tt.image(image_url, caption="Matriz de Correlación", use_column_width=True)
+
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')

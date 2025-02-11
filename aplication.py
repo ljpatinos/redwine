@@ -15,7 +15,7 @@ st.markdown(
         body { background-color: #4F4F99; }
         .titulo {
             color: #FFFFFF; 
-            font-size: 24px;  /* Ajusta el tamaño al mismo del subtítulo */
+            font-size: 34px;  /* Ajusta el tamaño al mismo del subtítulo */
             font-weight: bold;
             text-align: center;
         }

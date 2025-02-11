@@ -27,9 +27,9 @@ def load_data():
     return df
 
 MODEL_URLS = {
-    "Árbol de Decisión": "https://raw.githubusercontent.com/usuario/redwine/main/best_model.pkl.gz",
-    "Random Forest": "https://raw.githubusercontent.com/usuario/redwine/main/model_trained_DT.pkl.gz",
-    "SVM": "https://raw.githubusercontent.com/usuario/redwine/main/svm.pkl.gz"
+    "Árbol de Decisión": "https://raw.githubusercontent.com/ljpatinos/redwine/main/best_model.pkl.gz",
+    "Random Forest": "https://raw.githubusercontent.com/usuario/ljpatinos/main/model_trained_DT.pkl.gz",
+    "SVM": "https://raw.githubusercontent.com/usuario/ljpatinos/main/svm.pkl.gz"
 }
 def load_model(url):
     with urllib.request.urlopen(url) as response:

@@ -122,7 +122,7 @@ def main():
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')
-    st.subsubheader("Vista previa del Dataset")
+    st.markdown("Vista previa del Dataset")
     st.dataframe(df.head(3))  # Muestra las primeras 3 filas
         
     st.markdown("Ingrese las características para predecir la calidad:")

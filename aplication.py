@@ -139,15 +139,7 @@ def main():
     sulphates = st.number_input("Sulfatos", min_value=0.0, format="%.1f")
     alcohol = st.number_input("Contenido de alcohol (%)", min_value=0.0, format="%.2f")
 
-    clases = {0: 'bueno', 1: '', 2: 'nada', 3: '', 4: ''}
-
-    # Botón de predicción
-    #if st.button("Predecir Calidad"):
-        #model = load_model()
-        #input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,
-                                #free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])
-        #prediction = np.argmax(model.predict(input_data))
-        #st.markdown(f"### La calidad estimada del vino es: **{clases[prediction]}**")
+    clases = {0: 'No recomendable', 1: 'Poco recomendable', 2: 'Mediocre', 3: 'Aceptable', 4: 'Bueno', 5:'Muy bueno'}
 
     # Resultados con otros métodos
     st.markdown("---")

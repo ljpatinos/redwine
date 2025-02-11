@@ -119,6 +119,10 @@ def main():
     st.markdown("""La calidad del vino rojo esta influenciada por el contenido de alcohol y la acidez volátil""")
     st.image(image_url, caption="Matriz de Correlación")
 
+    # Resultados con otros métodos
+    st.markdown("---")
+    st.subheader("🔥 ", divider='gray')
+    
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')
@@ -141,10 +145,7 @@ def main():
 
     clases = {0: 'No recomendable', 1: 'Poco recomendable', 2: 'Mediocre', 3: 'Aceptable', 4: 'Bueno', 5:'Muy bueno'}
 
-    # Resultados con otros métodos
-    st.markdown("---")
-    st.subheader("🧮 Histograma", divider='gray')
-    
+   
     if st.button("Predecir Calidad"):
         input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,
                             free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])

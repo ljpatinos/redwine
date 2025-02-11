@@ -103,7 +103,7 @@ def main():
 
     # Personalizar
     plt.xlabel("Quality")
-    plt.ylabel({selected_var})
+    plt.ylabel(f"{selected_var}")
     plt.title(f"Relación entre {selected_var} y Calidad del Vino")
     plt.legend(title="Calidad", bbox_to_anchor=(1, 1))
     # Mostrar en Streamlit

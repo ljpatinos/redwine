@@ -76,7 +76,7 @@ def main():
     st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
 
     # Mostrar cada estadístico con su valor
-    for nombre, valor in estadisticas.items():
+    for nombre, valor in estadisticas.to_dict().items():
         st.sidebar.write(f"**{nombre}:** {valor:.2f}" if isinstance(valor, (int, float)) else f"**{nombre}:** {valor}")
 
     # Agregar la moda

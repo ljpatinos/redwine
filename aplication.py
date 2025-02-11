@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import urllib.request
 
+import streamlit as st
+
 st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
 
 st.markdown(
@@ -15,18 +17,24 @@ st.markdown(
         body { background-color: #4F4F99; }
         .titulo {
             color: #FFFFFF; 
-            font-size: 50px;  /* Ajusta el tamaño al mismo del subtítulo */
+            font-size: 24px;  
             font-weight: bold;
-            text-align: center;
+            text-align: left;
+            margin-bottom: -10px; /* Reduce el espacio debajo del título */
         }
         h2 { color: #FFFFFF; font-size: 24px; }
         h3, h4, h5, h6 { color: #FFFFFF; font-size: 18px; }
         .stSidebar { background-color: #561B47; }
-        .dataframe { margin: auto; } /* Centrar la tabla */
+        .dataframe { margin: auto; }
     </style>
     """, 
     unsafe_allow_html=True
 )
+
+# Usa Markdown sin el anclaje automático de Streamlit
+st.markdown('<div class="titulo">Predicción de la calidad del vino rojo</div>', unsafe_allow_html=True)
+
+st.subheader("Histograma")  # Para comparar tamaños
 
 # Cargar los datos
 @st.cache_data

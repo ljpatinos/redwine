@@ -71,21 +71,17 @@ def main():
     # Calcular la moda
     moda = df[selected_var].mode()
     moda_str = ", ".join(map(str, moda)) if not moda.empty else "No disponible"
-    estadisticas["Moda"] = moda_str  # Agregar la moda a la tabla
 
     # Mostrar en Streamlit
     st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
 
-    # Centrar la tabla usando HTML y CSS
-    st.sidebar.markdown(
-        f"""
-        <div style="display: flex; justify-content: center;">
-            {estadisticas.to_frame().to_html(header=False)}
-        </div>
-        """, unsafe_allow_html=True
-    )
+    # Mostrar cada estadístico con su valor
+    for nombre, valor in estadisticas.items():
+        st.sidebar.write(f"**{nombre}:** {valor:.2f}" if isinstance(valor, (int, float)) else f"**{nombre}:** {valor}")
 
-    
+    # Agregar la moda
+    st.sidebar.write(f"**Moda:** {moda_str}")
+
     st.sidebar.subheader("📌 Tipo de Variable")
     st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 

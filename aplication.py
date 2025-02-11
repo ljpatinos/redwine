@@ -28,8 +28,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<p class="titulo">Predicción de la calidad del vino rojo</p>', unsafe_allow_html=True)
-
 # Cargar los datos
 @st.cache_data
 def load_data():

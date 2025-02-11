@@ -17,7 +17,7 @@ st.markdown(
         body { background-color: #4F4F99; }
         .titulo {
             color: #FFFFFF; 
-            font-size: 24px;  
+            font-size: 35px;  
             font-weight: bold;
             text-align: left;
             margin-bottom: -10px; /* Reduce el espacio debajo del título */

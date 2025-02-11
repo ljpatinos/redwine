@@ -37,9 +37,6 @@ def load_model(url):
             model = pickle.load(f)
     return model
 
-# Cargar el modelo seleccionado
-model = load_model(selected_model_url)
-
 # Interfaz en Streamlit
 def main():
     st.markdown(
@@ -62,11 +59,16 @@ def main():
     st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 
     # Selección del modelo en la barra lateral
+
+    
     st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
     selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
     selected_model_url = MODEL_URLS[selected_model_name]
-    
-        # Generar gráficos
+
+    # Cargar el modelo seleccionado
+    model = load_model(selected_model_url)
+
+    # Generar gráficos
     st.subheader("📈 Visualización de la Variable")
     fig, axes = plt.subplots(1, 3, figsize=(10, 4))
 

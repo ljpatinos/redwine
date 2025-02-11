@@ -8,7 +8,7 @@ import seaborn as sns
 import urllib.request
 
 # Configuración de estilo
-st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
+st.header("Predicción de Calidad del Vino", layout="wide")
 st.markdown(
     """
      <style>
@@ -71,12 +71,14 @@ def main():
 
     # Generar gráficos
     # Histograma 
+    st.markdown("---")
     st.subheader("📊 Histograma", divider='gray')
     fig, ax = plt.subplots(figsize=(5, 3))
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
     ax.set_title(f"Histograma de {selected_var}", fontsize=6)
     st.pyplot(fig)
-
+    
+    st.markdown("---")
     image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
     st.subheader("🔢Correlación", divider='gray')
     st.image(image_url, caption="Matriz de Correlación")

@@ -77,6 +77,10 @@ def main():
     # Histograma 
     st.markdown("---")
     st.subheader("📊 Histograma", divider='gray')
+
+    st.markdown(f"La distribución de la variable quality muestra que no hay vinos con calificaciones de 0, 1, 2, 9 o 10. 
+    La mayoría de las observaciones (≈82%) se concentran en los valores 5 y 6.")
+    
     fig, ax = plt.subplots(figsize=(5, 3))
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
     ax.set_title(f"Histograma de {selected_var}", fontsize=6)

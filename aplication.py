@@ -116,11 +116,15 @@ def main():
     st.markdown("---")
     image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
     st.subheader("🔢Correlación", divider='gray')
+    st.markdown("""La calidad del vino rojo esta influenciada por el contenido de alcohol y la acidez volátil""")
     st.image(image_url, caption="Matriz de Correlación")
 
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')
+    st.subsubheader("Vista previa del Dataset")
+    st.dataframe(df.head(3))  # Muestra las primeras 3 filas
+        
     st.markdown("Ingrese las características para predecir la calidad:")
 
     fixed_acidity = st.number_input("Acidez fija", min_value=0.0, format="%.5f")

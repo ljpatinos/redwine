@@ -13,7 +13,7 @@ st.markdown(
     """
     <style>
         body { background-color: #4F4F99; }
-        h1 { color: #FFFFFF; font-size: 40 px; }
+        h1 { color: #FFFFFF; font-size: 30 px; }
         h2 { color: #FFFFFF; font-size: 20px; }
         h3, h4, h5, h6 { color: #FFFFFF; font-size: 18px; }
         .stSidebar { background-color: #561B47; }

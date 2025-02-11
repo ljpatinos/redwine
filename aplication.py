@@ -57,30 +57,41 @@ def main():
     #st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
     #st.sidebar.write(df[selected_var].describe())
     #Suponiendo que df ya está cargado y 'selected_var' está definido
-    etadisticas = df[selected_var].describe().rename(index={
-        "count": "Conteo",
-        "mean": "Media",
-        "std": "Desviación estándar",
-        "min": "Mínimo",
-        "25%": "1Q",
-        "50%": "Mediana",
-        "75%": "3Q",
-        "max": "Máximo"
-    })
 
-    # Calcular la moda
-    moda = df[selected_var].mode()
-    moda_str = ", ".join(map(str, moda)) if not moda.empty else "No disponible"
+    # Verificar si df está cargado y si selected_var es válido
+if selected_var not in df.columns:
+    st.sidebar.error(f"⚠️ La variable '{selected_var}' no existe en los datos.")
+else:
+    # Filtrar valores no nulos para evitar errores
+    datos_validos = df[selected_var].dropna()
 
-    # Mostrar en Streamlit
-    st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
+    if datos_validos.empty:
+        st.sidebar.error(f"⚠️ La variable '{selected_var}' no tiene datos válidos.")
+    else:
+        # Calcular estadísticas
+        estadisticas = datos_validos.describe().rename(index={
+            "count": "Conteo",
+            "mean": "Media",
+            "std": "Desviación estándar",
+            "min": "Mínimo",
+            "25%": "1Q",
+            "50%": "Mediana",
+            "75%": "3Q",
+            "max": "Máximo"
+        }).to_dict()  # Convertir a diccionario para evitar errores
 
-    # Mostrar cada estadístico con su valor
-    for nombre, valor in estadisticas.to_dict().items():
-        st.sidebar.write(f"**{nombre}:** {valor:.2f}" if isinstance(valor, (int, float)) else f"**{nombre}:** {valor}")
+        # Calcular moda
+        moda = datos_validos.mode()
+        moda_str = ", ".join(map(str, moda)) if not moda.empty else "No disponible"
 
-    # Agregar la moda
-    st.sidebar.write(f"**Moda:** {moda_str}")
+        # Mostrar estadísticas en la barra lateral
+        st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
+
+        for nombre, valor in estadisticas.items():
+            st.sidebar.write(f"**{nombre}:** {valor:.2f}" if isinstance(valor, (int, float)) else f"**{nombre}:** {valor}")
+
+        # Agregar la moda
+        st.sidebar.write(f"**Moda:** {moda_str}")
 
     st.sidebar.subheader("📌 Tipo de Variable")
     st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")

@@ -53,10 +53,6 @@ def load_model(url):
 
 # Interfaz en Streamlit
 def main():
-    #st.markdown(
-        #'<h1 style="color: #FFFFFF; text-align: center; font-size:16px; ">Predicción de la calidad del vino rojo </h1>',
-        #unsafe_allow_html=True
-    #)
 
     # Cargar datos
     df = load_data()
@@ -95,6 +91,35 @@ def main():
     st.subheader("🔢Correlación", divider='gray')
     st.image(image_url, caption="Matriz de Correlación")
 
+    # Título
+    # Sección de predicción de calidad
+    st.markdown("---")
+    st.subheader("🎯 Calidad vs Alcohol", divider='gray')
+    st.title("Gráfico de Dispersión: Alcohol vs. Calidad del Vino")
+
+    # Colores para la calidad
+    palette = sns.color_palette("coolwarm", as_cmap=False)  # Mapa de colores
+
+    # Crear gráfico
+    fig, ax = plt.subplots(figsize=(8, 5))
+    scatter = sns.scatterplot(
+        data=df,
+        x="alcohol",
+        y="quality",
+        hue="quality",
+        palette=palette,
+        alpha=0.7
+    )
+
+    # Personalizar
+    plt.xlabel("Alcohol (%)")
+    plt.ylabel("Calidad")
+    plt.title("Relación entre Alcohol y Calidad del Vino")
+    plt.legend(title="Calidad", bbox_to_anchor=(1, 1))
+
+    # Mostrar en Streamlit
+    st.pyplot(fig)
+    
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')
@@ -122,6 +147,10 @@ def main():
         #prediction = np.argmax(model.predict(input_data))
         #st.markdown(f"### La calidad estimada del vino es: **{clases[prediction]}**")
 
+    # Resultados con otros métodos
+    st.markdown("---")
+    st.subheader("🧮 Histograma", divider='gray')
+    
     if st.button("Predecir Calidad"):
         input_data = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides,
                             free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol]])

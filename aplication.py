@@ -13,9 +13,9 @@ st.markdown(
     """
      <style>
         body { background-color: #4F4F99; }
-        h1 { color: #FFFFFF; font-size: 16px; }
-        h2 { color: #FFFFFF; font-size: 14px; }
-        h3, h4, h5, h6 { color: #FFFFFF; font-size: 12px; }
+        h1 { color: #FFFFFF; font-size: 14px; }
+        h2 { color: #FFFFFF; font-size: 12px; }
+        h3, h4, h5, h6 { color: #FFFFFF; font-size: 10px; }
         .stSidebar { background-color: #561B47; }
         .dataframe { margin: auto; } /* Centrar la tabla */
     </style>

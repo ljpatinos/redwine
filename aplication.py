@@ -119,10 +119,6 @@ def main():
     st.markdown("""La calidad del vino rojo esta influenciada por el contenido de alcohol y la acidez volátil""")
     st.image(image_url, caption="Matriz de Correlación")
 
-    # Resultados con otros métodos
-    st.markdown("---")
-    st.subheader("🔥 ", divider='gray')
-    
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')

@@ -54,8 +54,37 @@ def main():
     selected_var = st.sidebar.selectbox("Selecciona una variable:", df.columns)
 
     # Mostrar estadísticas descriptivas
+    #st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
+    #st.sidebar.write(df[selected_var].describe())
+    #Suponiendo que df ya está cargado y 'selected_var' está definido
+    etadisticas = df[selected_var].describe().rename(index={
+        "count": "Conteo",
+        "mean": "Media",
+        "std": "Desviación estándar",
+        "min": "Mínimo",
+        "25%": "1Q",
+        "50%": "Mediana",
+        "75%": "3Q",
+        "max": "Máximo"
+    })
+
+    # Calcular la moda
+    moda = df[selected_var].mode()
+    moda_str = ", ".join(map(str, moda)) if not moda.empty else "No disponible"
+    estadisticas["Moda"] = moda_str  # Agregar la moda a la tabla
+
+    # Mostrar en Streamlit
     st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
-    st.sidebar.write(df[selected_var].describe())
+
+    # Centrar la tabla usando HTML y CSS
+    st.sidebar.markdown(
+        f"""
+        <div style="display: flex; justify-content: center;">
+            {estadisticas.to_frame().to_html(header=False)}
+        </div>
+        """, unsafe_allow_html=True
+    )
+
     
     st.sidebar.subheader("📌 Tipo de Variable")
     st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")

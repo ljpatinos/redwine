@@ -28,8 +28,8 @@ def load_data():
 
 MODEL_URLS = {
     "Red neuronal": "https://raw.githubusercontent.com/ljpatinos/redwine/main/best_model.pkl.gz",
-    "Arbol de decisiones": "https://raw.githubusercontent.com/ljpatinos/ljpatinos/main/model_trained_DT.pkl.gz",
-    "Arbol (6Var)": "https://raw.githubusercontent.com/usuario/ljpatinos/main/svm.pkl.gz"
+    "Arbol de decisiones": "https://raw.githubusercontent.com/ljpatinos/redwine/main/model_trained_DT.pkl.gz",
+    "Arbol (6Var)": "https://raw.githubusercontent.com/usuario/ljpatinos/redwine/main/svm.pkl.gz"
 }
 def load_model(url):
     with urllib.request.urlopen(url) as response:

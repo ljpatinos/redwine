@@ -26,14 +26,6 @@ def load_data():
     df = pd.read_csv("redwine.csv")  # Ajusta la ruta si es necesario
     return df
 
-# Selección del modelo en la barra lateral
-st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
-selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
-selected_model_url = MODEL_URLS[selected_model_name]
-
-# Cargar el modelo seleccionado
-model = load_model(selected_model_url)
-
 # Interfaz en Streamlit
 def main():
     st.markdown(
@@ -82,6 +74,11 @@ def main():
         ax.set_title(f"Relación entre {selected_var} y Calidad",fontsize=10)
         st.pyplot(fig)
 
+# Selección del modelo en la barra lateral
+st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
+selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
+selected_model_url = MODEL_URLS[selected_model_name]
+
 MODEL_URLS = {
     "Red neuronal": "https://raw.githubusercontent.com/ljpatinos/redwine/main/best_model.pkl.gz",
     "Arbol de decisiones": "https://raw.githubusercontent.com/ljpatinos/ljpatinos/main/model_trained_DT.pkl.gz",
@@ -92,6 +89,11 @@ def load_model(url):
         with gzip.GzipFile(fileobj=response) as f:
             model = pickle.load(f)
     return model
+
+# Cargar el modelo seleccionado
+model = load_model(selected_model_url)
+
+
     
     # Sección de predicción de calidad
     st.markdown("---")

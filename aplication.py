@@ -26,12 +26,11 @@ def load_data():
     df = pd.read_csv("redwine.csv")  # Ajusta la ruta si es necesario
     return df
 
-# Cargar modelo
 MODEL_URLS = {
-    "Árbol de Decisión": "https://raw.githubusercontent.com/usuario/repositorio/main/best_model.pkl.gz",
-    "Random Forest": "https://raw.githubusercontent.com/usuario/repositorio/main/model_trained_DT.pkl.gz",
-    "SVM": "https://raw.githubusercontent.com/usuario/repositorio/main/svm.pkl.gz"
-
+    "Árbol de Decisión": "https://raw.githubusercontent.com/usuario/redwine/main/best_model.pkl.gz",
+    "Random Forest": "https://raw.githubusercontent.com/usuario/redwine/main/model_trained_DT.pkl.gz",
+    "SVM": "https://raw.githubusercontent.com/usuario/redwine/main/svm.pkl.gz"
+}
 def load_model(url):
     with urllib.request.urlopen(url) as response:
         with gzip.GzipFile(fileobj=response) as f:

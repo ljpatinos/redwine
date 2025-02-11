@@ -60,7 +60,6 @@ def main():
 
     # Selección del modelo en la barra lateral
 
-    
     st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
     selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
     selected_model_url = MODEL_URLS[selected_model_name]
@@ -72,28 +71,12 @@ def main():
     st.subheader("📈 Visualización de la Variable")
     fig, axes = plt.subplots(1, 3, figsize=(10, 4))
 
-    # Boxplot
-    st.markdown("### 🔲 Boxplot")
+    # Histograma
+    st.markdown("### 📊 Histograma")
     fig, ax = plt.subplots()
-    sns.boxplot(y=df[selected_var], ax=ax, color="lightblue")
-    ax.set_title(f"Boxplot de {selected_var}",fontsize=10)
+    sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
+    ax.set_title(f"Histograma de {selected_var}", fontsize=10)
     st.pyplot(fig)
-
-    # Gráfico de barras (solo si la variable es categórica o tiene pocos valores únicos)
-    if df[selected_var].nunique() < 10:
-        st.markdown("### 📊 Gráfico de Barras")
-        fig, ax = plt.subplots()
-        sns.countplot(x=df[selected_var], ax=ax, palette="viridis")
-        ax.set_title(f"Distribución de {selected_var}",fontsize=10)
-        st.pyplot(fig)
-
-    # Dispersión contra calidad (si es numérica)
-    if df[selected_var].dtype in ["int64", "float64"] and selected_var != "quality":
-        st.markdown("### 🔵 Gráfico de Dispersión vs Calidad")
-        fig, ax = plt.subplots()
-        sns.scatterplot(x=df[selected_var], y=df["quality"], ax=ax, alpha=0.5)
-        ax.set_title(f"Relación entre {selected_var} y Calidad",fontsize=10)
-        st.pyplot(fig)
    
     # Sección de predicción de calidad
     st.markdown("---")

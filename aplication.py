@@ -82,7 +82,7 @@ def main():
 
     image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
     st.markdown("### Correlación", unsafe_allow_html=True)
-    tt.image(image_url, caption="Matriz de Correlación", use_column_width=True)
+    st.image(image_url, caption="Matriz de Correlación", use_column_width=True)
 
     # Sección de predicción de calidad
     st.markdown("---")

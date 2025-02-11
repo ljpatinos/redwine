@@ -54,50 +54,14 @@ def main():
     selected_var = st.sidebar.selectbox("Selecciona una variable:", df.columns)
 
     # Mostrar estadísticas descriptivas
-    #st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
-    #st.sidebar.write(df[selected_var].describe())
+    st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
+    st.sidebar.write(df[selected_var].describe())
+    
     #Suponiendo que df ya está cargado y 'selected_var' está definido
-
-    # Verificar si df está cargado y si selected_var es válido
-if selected_var not in df.columns:
-    st.sidebar.error(f"⚠️ La variable '{selected_var}' no existe en los datos.")
-else:
-    # Filtrar valores no nulos para evitar errores
-    datos_validos = df[selected_var].dropna()
-
-    if datos_validos.empty:
-        st.sidebar.error(f"⚠️ La variable '{selected_var}' no tiene datos válidos.")
-    else:
-        # Calcular estadísticas
-        estadisticas = datos_validos.describe().rename(index={
-            "count": "Conteo",
-            "mean": "Media",
-            "std": "Desviación estándar",
-            "min": "Mínimo",
-            "25%": "1Q",
-            "50%": "Mediana",
-            "75%": "3Q",
-            "max": "Máximo"
-        }).to_dict()  # Convertir a diccionario para evitar errores
-
-        # Calcular moda
-        moda = datos_validos.mode()
-        moda_str = ", ".join(map(str, moda)) if not moda.empty else "No disponible"
-
-        # Mostrar estadísticas en la barra lateral
-        st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
-
-        for nombre, valor in estadisticas.items():
-            st.sidebar.write(f"**{nombre}:** {valor:.2f}" if isinstance(valor, (int, float)) else f"**{nombre}:** {valor}")
-
-        # Agregar la moda
-        st.sidebar.write(f"**Moda:** {moda_str}")
-
     st.sidebar.subheader("📌 Tipo de Variable")
     st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
 
     # Selección del modelo en la barra lateral
-
     st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
     selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
     selected_model_url = MODEL_URLS[selected_model_name]

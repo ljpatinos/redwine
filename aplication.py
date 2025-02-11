@@ -70,18 +70,15 @@ def main():
     model = load_model(selected_model_url)
 
     # Generar gráficos
-    st.subheader("📈 Visualización de la Variable", divider='gray')
-    fig, axes = plt.subplots(1, 3, figsize=(10, 4))
-
-    # Histograma
-    st.markdown("### 📊 Histograma", unsafe_allow_html=True)
+    # Histograma 
+    st.markdown("### 📊 Histograma", unsafe_allow_html=True, divider='gray')
     fig, ax = plt.subplots(figsize=(5, 3))
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
     ax.set_title(f"Histograma de {selected_var}", fontsize=6)
     st.pyplot(fig)
 
     image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
-    st.markdown("### Correlación", unsafe_allow_html=True)
+    st.markdown("### 🔢Correlación", unsafe_allow_html=True, divider='gray')
     st.image(image_url, caption="Matriz de Correlación")
 
     # Sección de predicción de calidad

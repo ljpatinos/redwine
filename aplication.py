@@ -153,9 +153,12 @@ def main():
 
 
     st.markdown("---")
-    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/DecisionTree.png" 
-    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/RedN.png"  # 🔹 Reemplaza con tu URL correcta
     st.subheader("Matriz de confusión", divider='gray')
+    image_url2 = "https://raw.githubusercontent.com/ljpatinos/redwine/main/DecisionTree.png" 
+    image_url1 = "https://raw.githubusercontent.com/ljpatinos/redwine/main/RedN.png"  # 🔹 Reemplaza con tu URL correcta
+    st.image(image_url1, caption="Red neuronal")
+    st.image(image_url2, caption="Árbol de decisiones")
+
     
 if __name__ == "__main__":
     main()

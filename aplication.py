@@ -42,7 +42,7 @@ def load_model(url):
 # Interfaz en Streamlit
 def main():
     st.markdown(
-        '<h1 style="color: #FFFFFF; text-align: center;">Predicción de la calidad del vino rojo </h1>',
+        '<h1 style="color: #FFFFFF; text-align: center; font-size:16px; ">Predicción de la calidad del vino rojo </h1>',
         unsafe_allow_html=True
     )
 
@@ -50,11 +50,11 @@ def main():
     df = load_data()
 
     # Barra lateral para seleccionar variable
-    st.sidebar.header("🔍 Exploración de Variables")
+    st.sidebar.header("🔍 Exploración de Variables", divider='gray')
     selected_var = st.sidebar.selectbox("Selecciona una variable:", df.columns)
 
     # Mostrar estadísticas descriptivas
-    st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'")
+    st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
     st.sidebar.write(df[selected_var].describe())
     
     st.sidebar.subheader("📌 Tipo de Variable")
@@ -70,19 +70,19 @@ def main():
     model = load_model(selected_model_url)
 
     # Generar gráficos
-    st.subheader("📈 Visualización de la Variable")
+    st.subheader("📈 Visualización de la Variable", divider='gray')
     fig, axes = plt.subplots(1, 3, figsize=(10, 4))
 
     # Histograma
-    st.markdown("### 📊 Histograma")
+    st.markdown("### 📊 Histograma", unsafe_allow_html=True)
     fig, ax = plt.subplots(figsize=(5, 3))
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
-    ax.set_title(f"Histograma de {selected_var}", fontsize=10)
+    ax.set_title(f"Histograma de {selected_var}", fontsize=6)
     st.pyplot(fig)
    
     # Sección de predicción de calidad
     st.markdown("---")
-    st.subheader("🎯 Predicción de Calidad del Vino")
+    st.subheader("🎯 Predicción", divider='gray')
     st.markdown("Ingrese las características para predecir la calidad:")
 
     fixed_acidity = st.number_input("Acidez fija", min_value=0.0, format="%.5f")

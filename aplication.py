@@ -34,8 +34,6 @@ st.markdown(
 # Usa Markdown sin el anclaje automático de Streamlit
 st.markdown('<div class="titulo">Predicción de la calidad del vino rojo</div>', unsafe_allow_html=True)
 
-st.subheader("Histograma")  # Para comparar tamaños
-
 # Cargar los datos
 @st.cache_data
 def load_data():

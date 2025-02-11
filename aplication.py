@@ -73,7 +73,7 @@ def main():
 
     # Histograma
     st.markdown("### 📊 Histograma")
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(5, 3))
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
     ax.set_title(f"Histograma de {selected_var}", fontsize=10)
     st.pyplot(fig)

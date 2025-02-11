@@ -8,7 +8,6 @@ import seaborn as sns
 import urllib.request
 
 # Configuración de estilo
-st.header("Predicción de Calidad del Vino", layout="wide")
 st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
 st.markdown(
     """

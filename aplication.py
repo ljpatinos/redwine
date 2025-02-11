@@ -26,17 +26,6 @@ def load_data():
     df = pd.read_csv("redwine.csv")  # Ajusta la ruta si es necesario
     return df
 
-MODEL_URLS = {
-    "Red neuronal": "https://raw.githubusercontent.com/ljpatinos/redwine/main/best_model.pkl.gz",
-    "Arbol de decisiones": "https://raw.githubusercontent.com/usuario/ljpatinos/main/model_trained_DT.pkl.gz",
-    "Arbol (6Var)": "https://raw.githubusercontent.com/usuario/ljpatinos/main/svm.pkl.gz"
-}
-def load_model(url):
-    with urllib.request.urlopen(url) as response:
-        with gzip.GzipFile(fileobj=response) as f:
-            model = pickle.load(f)
-    return model
-
 # Selección del modelo en la barra lateral
 st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
 selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
@@ -93,6 +82,17 @@ def main():
         ax.set_title(f"Relación entre {selected_var} y Calidad",fontsize=10)
         st.pyplot(fig)
 
+MODEL_URLS = {
+    "Red neuronal": "https://raw.githubusercontent.com/ljpatinos/redwine/main/best_model.pkl.gz",
+    "Arbol de decisiones": "https://raw.githubusercontent.com/ljpatinos/ljpatinos/main/model_trained_DT.pkl.gz",
+    "Arbol (6Var)": "https://raw.githubusercontent.com/usuario/ljpatinos/main/svm.pkl.gz"
+}
+def load_model(url):
+    with urllib.request.urlopen(url) as response:
+        with gzip.GzipFile(fileobj=response) as f:
+            model = pickle.load(f)
+    return model
+    
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción de Calidad del Vino")

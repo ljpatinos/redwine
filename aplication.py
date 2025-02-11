@@ -65,10 +65,6 @@ def main():
     st.sidebar.subheader(f"📊 Estadísticas Descriptivas de '{selected_var}'", divider='gray')
     st.sidebar.write(df[selected_var].describe())
     
-    #Suponiendo que df ya está cargado y 'selected_var' está definido
-    st.sidebar.subheader("📌 Tipo de Variable")
-    st.sidebar.write(f"La variable '{selected_var}' es de tipo: **{df[selected_var].dtype}**")
-
     # Selección del modelo en la barra lateral
     st.sidebar.header("🔍 Seleccionar Modelo de Predicción")
     selected_model_name = st.sidebar.selectbox("Elige un modelo:", list(MODEL_URLS.keys()))
@@ -85,16 +81,11 @@ def main():
     sns.histplot(df[selected_var], bins=20, kde=True, color="blue", ax=ax)
     ax.set_title(f"Histograma de {selected_var}", fontsize=6)
     st.pyplot(fig)
-    
-    st.markdown("---")
-    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
-    st.subheader("🔢Correlación", divider='gray')
-    st.image(image_url, caption="Matriz de Correlación")
 
-    # Título
+        # Título
     # Sección de predicción de calidad
     st.markdown("---")
-    st.subheader("📈 Calidad vs Alcohol", divider='gray')
+    st.subheader("📈 Dispersión", divider='gray')
     
     # Colores para la calidad
     palette = sns.color_palette("coolwarm", as_cmap=False)  # Mapa de colores
@@ -103,22 +94,26 @@ def main():
     fig, ax = plt.subplots(figsize=(8, 5))
     scatter = sns.scatterplot(
         data=df,
-        x="alcohol",
-        y="quality",
+        x="quality",
+        y=df[selected_var],
         hue="quality",
         palette=palette,
         alpha=0.7
     )
 
     # Personalizar
-    plt.xlabel("Alcohol (%)")
-    plt.ylabel("Calidad")
-    plt.title("Relación entre Alcohol y Calidad del Vino")
+    plt.xlabel("Quality")
+    plt.ylabel({selected_var})
+    plt.title(f"Relación entre {selected_var} y Calidad del Vino")
     plt.legend(title="Calidad", bbox_to_anchor=(1, 1))
-
     # Mostrar en Streamlit
     st.pyplot(fig)
     
+    st.markdown("---")
+    image_url = "https://raw.githubusercontent.com/ljpatinos/redwine/main/correlation_matrix.png"  # 🔹 Reemplaza con tu URL correcta
+    st.subheader("🔢Correlación", divider='gray')
+    st.image(image_url, caption="Matriz de Correlación")
+
     # Sección de predicción de calidad
     st.markdown("---")
     st.subheader("🎯 Predicción", divider='gray')

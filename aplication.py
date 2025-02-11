@@ -94,9 +94,8 @@ def main():
     # Título
     # Sección de predicción de calidad
     st.markdown("---")
-    st.subheader("🎯 Calidad vs Alcohol", divider='gray')
-    st.title("Gráfico de Dispersión: Alcohol vs. Calidad del Vino")
-
+    st.subheader("📈 Calidad vs Alcohol", divider='gray')
+    
     # Colores para la calidad
     palette = sns.color_palette("coolwarm", as_cmap=False)  # Mapa de colores
 

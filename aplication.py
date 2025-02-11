@@ -11,9 +11,13 @@ import urllib.request
 st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
 st.markdown(
     """
-    <style>
-        body { background-color: #4F4F99; }
-        h1 { color: #FFFFFF; font-size: 30 px; }
+    body { background-color: #4F4F99; }
+        .titulo {
+            color: #FFFFFF; 
+            font-size: 24px;  /* Ajusta el tamaño al mismo del subtítulo */
+            font-weight: bold;
+            text-align: center;
+        }
         h2 { color: #FFFFFF; font-size: 20px; }
         h3, h4, h5, h6 { color: #FFFFFF; font-size: 18px; }
         .stSidebar { background-color: #561B47; }

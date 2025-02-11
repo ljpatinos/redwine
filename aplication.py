@@ -7,24 +7,28 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import urllib.request
 
-# Configuración de estilo
 st.set_page_config(page_title="Predicción de Calidad del Vino", layout="wide")
+
 st.markdown(
     """
-    body { background-color: #4F4F99; }
+    <style>
+        body { background-color: #4F4F99; }
         .titulo {
             color: #FFFFFF; 
-            font-size: 24px;  
+            font-size: 24px;  /* Ajusta el tamaño al mismo del subtítulo */
             font-weight: bold;
             text-align: center;
         }
-        h2 { color: #FFFFFF; font-size: 20px; }
+        h2 { color: #FFFFFF; font-size: 24px; }
         h3, h4, h5, h6 { color: #FFFFFF; font-size: 18px; }
         .stSidebar { background-color: #561B47; }
         .dataframe { margin: auto; } /* Centrar la tabla */
     </style>
-    """, unsafe_allow_html=True
+    """, 
+    unsafe_allow_html=True
 )
+
+st.markdown('<p class="titulo">Predicción de la calidad del vino rojo</p>', unsafe_allow_html=True)
 
 # Cargar los datos
 @st.cache_data
